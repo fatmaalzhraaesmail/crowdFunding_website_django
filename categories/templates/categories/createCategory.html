@@ -1,0 +1,36 @@
+{% extends 'projects/base.html' %}
+{% load static %} 
+{% block content %}
+
+<h1>create New Category</h1>
+
+{% if request.user.is_superuser %}
+<form class="form-row" method="POST" action="" enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  <div class="mb-3"> <!-- 1 -->
+    <label class="form-label">category </label>
+    <input type="text" name="category_name" class="form-control">
+  </div> <!-- 1 -->
+  <div class="mb-3"> <!-- 1 -->
+    <label class="form-label">description </label>
+    <input type="text" name="description" class="form-control">
+  </div> <!-- 1 -->
+ 
+  
+  <div class="mb-3"> <!-- 3 -->
+    <label class="form-label">Image </label>
+    <input type="file" class="form-control" name="image">
+  </div> <!-- 3 -->
+  
+
+  
+  <button type="submit" class="btn btn-primary">Add Category</button>
+</form>
+
+{% else %}
+
+<h1>You are Not allowed Admin SuperUser is Only Allowed !!!!!!!!!!!</h1>
+{% endif %}
+
+{% endblock content %}

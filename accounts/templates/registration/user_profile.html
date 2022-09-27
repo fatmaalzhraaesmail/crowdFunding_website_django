@@ -1,0 +1,142 @@
+{% extends 'projects/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>User Profile...</h1>
+ 
+
+<section>
+  <div class="row d-inline-flex">
+    <div class="col-md-3 d-block">
+      <a class="btn btn-info w-100 mb-1 " href="{% url 'edit_profile_page'  user.id   %}">edit Profile</a>
+      <a class="btn btn-info w-100 mb-1" href="{% url 'create_profile_page' %} ">Complete Profile</a>
+      <a class="btn btn-info w-100 mb-1" href="{% url  'show_profile_page' user.id  %} ">Show Profile</a>
+      <a class="btn btn-info w-100 mb-1" href="{% url 'delete_account' user.id %} ">delete Profile</a>
+      <a class="btn btn-info w-100 mb-1" href="{% url 'change-password' %} ">Change Password</a>
+      <a class="btn btn-info w-100 mb-1" href="{% url 'logout' %}">Logout</a>
+
+   </div><!-- col-md-3 -->
+
+    <div class="col-md-9">
+
+
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-3">
+            {% if page_user.profile.profile_pic %}
+          <img src="{{ user.profile.profile_pic.url }}" class=" rounded-circle " style="height:170px; width:170px;">
+          {% else %}
+          <img src="{% static 'projects/images/default_image.png' %}" class="img-fluid rounded-circle">
+          {% endif %}
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+                  <h1>{{ page_user.first_name }}
+                  {{ page_user.last_name }}</h1>
+                  <h4>Email: <span>{{ page_user.email }}</span></h4>
+                  <h4>country: <span>{{ page_user.profile.country }}</span></h4>
+                  <h4>birth-date: <span>{{ page_user.profile.birth_date }}</span></h4>
+                  <h4>Job: <span>{{ page_user.profile.job }}</span></h4>
+                  
+             
+                <p class="small text-muted">
+      
+      
+                    {% if page_user.facebook_url %}
+                        | <a href="{{ page_user.facebook_url }}">Facebook</a>
+                    {% endif %}
+      
+                    {% if page_user.twitter_url %}
+                        | <a href="{{ page_user.twitter_url }}">Twitter</a>
+                    {% endif %}
+      
+                    {% if page_user.instagram_url %}
+                        | <a href="{{ page_user.instagram_url }}">Instagram</a>
+                    {% endif %}
+      
+      
+                </p>
+             
+      
+            
+              
+              
+                     
+      
+      
+      
+      
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+    
+    </div><!-- col-md-9 -->
+    
+  </div><!-- row -->
+</section>
+
+   
+
+
+
+
+
+    <h3 class="text-center">personal Projects</h3>
+    <div class="row">
+      {% for projectt in projects %}
+
+      <div class="card3 col-md-4 " style="background-color: rgb(214, 214, 159);" >
+          <img src="{{projectt.images_project.first.get_imageShow_url}}" style="height:240px; " class="w-100"  alt=""> 
+
+
+            <h5 class="card-title">{{projectt.Title}}</h5>
+            <h5 class="card-title">{{projectt.target}}</h5>
+            <h5 class="card-title"> </h5>
+            <!-- <p class="card-text">{{activity.Description}}</p> -->
+            <a href="{% url 'show_project' projectt.id%}" class="btn ">
+             <i class="fa fa-eye"></i> show</a>
+            <a href="{% url 'edit_project' projectt.id%}" class="btn ">
+              <i class="fa fa-edit"></i> Edit</a>
+            <a href="{% url 'delete_project' projectt.id%}" class="btn ">
+              <i class="fa fa-trash-alt"></i> Delete</a>
+      </div>
+        {% endfor %}
+   
+  </div><!-- row -->
+
+
+
+  <h1 class="text-center">Your Own Donations...</h1>
+
+      {% for donation in donations %}
+
+      <div class="card3 col-md-4 " style="background-color: rgb(214, 214, 159); height:450px" >
+        <img src="{{donation.project.images_project.first.get_imageShow_url}}" style="height:240px; " class="w-100"  alt=""> 
+
+
+          <h5 class="card-title">{{donation.project.Title}}</h5>
+          <h5 class="text-info">Quantity of Money: {{ donation.quantity }} </h5>
+          <h5 class="text-danger">Donation Created At:{{ donation.created_at }}</h5>  
+          <!-- <p class="card-text">{{activity.Description}}</p> -->
+          <a href="{% url 'show_project'  donation.project.id %}" class="btn ">
+           <i class="fa fa-eye"></i> show</a>
+         
+    </div>
+           <h3 class="text-danger">Donation Created At:{{ donation.created_at }}</h3>  
+            <h4 class="text-secondary">Donation On Project:<a href="{% url 'show_project'  donation.project.id %}" class="btn ">
+
+              <i class="fa fa-eye"></i>{{donation.project.Title}} </a>
+              <img src="" alt="">
+            </h4> 
+            <h2 class="text-info">Quantity of Money: {{ donation.quantity }} </h2>
+              <hr>
+  
+      {% endfor %}
+  
+
+
+{% endblock %}

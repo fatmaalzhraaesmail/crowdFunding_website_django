@@ -1,0 +1,32 @@
+{% extends 'projects/base.html' %}
+{% load static %} 
+{% block content %}
+<a href="{% url 'create_category' %}" class="btn btn-success btn-lg d-block"> create new Category</a>
+
+<h1>show all Categories </h1>
+<div style="height: 15px;">
+
+</div>
+
+<div>
+    {% for category in categories %}
+    <div style=" display: inline-block; vertical-align: middle; width: calc(100%/3.1);  margin-bottom: 20px; padding-bottom: 20px;">
+    <div class="card" style="width: 18rem; ">
+        <img src="{{category.get_image_url}}" class="card-img-top"  width="200" height="200" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{category.category_name}}</h5>
+           <a href="{{category.get_show_url}}" class="btn btn-primary">show</a>
+           <a href="{{category.get_edit_url}}" class="btn btn-warning">Edit</a>
+          <a href="{{category.get_delete_url}}" class="btn btn-danger">Delete</a>
+
+       
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+
+{% endblock content %}

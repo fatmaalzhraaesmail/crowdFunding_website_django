@@ -1,0 +1,52 @@
+{% extends 'projects/base.html' %}
+{% load static %} 
+{% block content %}
+
+
+
+<div class="row">
+    {% if not projects.all %}
+    <h4 class="text-warning mr-auto">No Projects Yet...</h4> 
+ {% else %}
+{% for project in projects %}
+<div class=" card card1 col-md-4 " style="height:400px;" >
+    <img src="{{project.images_project.first.get_imageShow_url}}" style="height:240px;" alt=""> 
+
+ 
+    
+      <h5 class="card-title">{{project.Title}}</h5>
+      <!-- <p class="card-text">{{activity.Description}}</p> -->
+      <a href="{% url 'show_project' project.id%}" class="btn ">
+       <i class="fa fa-eye"></i> show</a>
+      <a href="{% url 'edit_project' project.id%}" class="btn ">
+        <i class="fa fa-edit"></i> Edit</a>
+      <a href="{% url 'delete_project' project.id%}" class="btn ">
+        <i class="fa fa-trash-alt"></i> Delete</a>
+</div>
+  {% endfor %}
+
+  {% endif %}
+
+</div><!-- row -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

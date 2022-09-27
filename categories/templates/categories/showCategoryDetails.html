@@ -1,0 +1,21 @@
+{% extends 'projects/base.html' %}
+{% load static %} 
+{% block content %}
+
+<h1>Category Details</h1>
+    <div style=" display: inline-block; vertical-align: middle; width: calc(100%/3.1);">
+    <div class="card" style="width: 18rem;">
+        <img src="{{category.get_imageShow_url}}" class="card-img-top"  width="200" height="200" alt="...">
+        <div class="card-body">
+
+          <h5 class="card-title">{{category.category_name}}</h5>
+          <p class="card-text">created_at:{{category.created_at}}</p>     
+          <p class="card-text">updated_at:{{category.updated_at}}</p>     
+          <a href="{% url 'edit_category' category.id%}" class="btn btn-warning">Edit</a>
+         <a href="{% url 'delete_category' category.id%}" class="btn btn-danger">Delete</a>  
+         <a href="{% url 'categories_index'%}" class="btn btn-success">GO Back</a>   
+
+        </div>
+      </div>
+    </div>
+{% endblock content %}
