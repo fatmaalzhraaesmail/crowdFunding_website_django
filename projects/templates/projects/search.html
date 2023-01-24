@@ -1,0 +1,51 @@
+{% extends 'projects/base.html' %}
+{% load static %} 
+{% block content %}
+
+<h1 class="text-center">search Project</h1>
+<div class="container">
+    {% if query %}
+ 
+           
+ 
+ <h2 class="text-danger"> {% with results.count as total_results %}  
+ 
+          Found {{ total_results }} results
+ 
+            {% endwith %}</h2>
+
+ <div class="row">
+ 
+    {% for project in results %}
+  <div class="col-md-4">
+    <div class="card card1 " style="height: 350px ;" >
+        <img src="{{project.images_project.first.get_image_url}}" style="height:230px;" alt=""> 
+
+       
+          <h5 class="card-title">{{project.Title}}</h5>
+          <!-- <p class="card-text">{{activity.Description}}</p> -->
+          <a href="{% url 'show_project' project.id%}" class="btn ">
+           <i class="fa fa-eye"></i> show</a>
+        
+    </div>
+</div>
+
+
+   
+ 
+
+ 
+ 
+    {% empty %}
+ 
+    <h3>No results found.</h3>
+ 
+    {% endfor %}
+ 
+   {% endif %}
+   </div>
+   </div>
+
+   
+
+{% endblock content %}

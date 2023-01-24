@@ -1,0 +1,260 @@
+{% extends 'projects/base.html' %}
+{% load static %} 
+{% block content %}
+{% comment %} <a href="{% url 'create_project' %}" class="btn btn-success btn-lg d-block"> create new Project</a> {% endcomment %}
+
+
+<section id="slider  " >
+  <div class="container ">
+      <div class="row">
+          <div class="col-sm-12">
+              <div id="myCarousel" class="carousel slide bg-white " data-ride="carousel">
+                  <ol class="carousel-indicators">
+
+                      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                      <li data-target="#myCarousel" data-slide-to="1" ></li>
+                      <li data-target="#myCarousel" data-slide-to="2" ></li>
+                  </ol>
+                  <div class="carousel-inner ">
+
+                      <div class="carousel-item  active  ">
+                          <div class="row">
+                          <div class="col-sm-6 text-center  mt-5   pt-5">
+                              <h1 class=""><span>social </span>finance</h1>
+                              <h2>Financing small projects</h2>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                              <button type="button" class="btn btn-default get mx-auto ">Donate now</button>
+                          </div>
+
+                          <div class="col-sm-6 text-center ">
+                              <img src="{% static './projects/images/cadr9.jpg'%}" class=" img-fluid  " style=" height: 350px;" alt="...">
+                          </div>
+                      </div>
+
+                      </div>
+
+                      <div class="carousel-item  ">
+                          <div class="row">
+                          <div class="col-sm-6 text-center  mt-5   pt-5">
+                              <h1 class=""><span>social </span>finance</h1>
+                              <h2>Village development and urban communities</h2>
+                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                              <button type="button" class="btn btn-default get mx-auto">Donate now</button>
+                          </div>
+                          <div class="col-sm-6 text-center ">
+                        <img src="{% static './projects/images/cadr7.jpg'%}" class=" img-fluid "style=" height: 350px;" alt="...">
+                           </div>
+                          </div>
+                  </div>
+
+                     <div class="carousel-item  ">
+                         <div class="row">
+                      <div class="col-sm-6  mt-5 text-center  pt-5">
+                          <h1 class=""><span>social </span>finance</h1>
+                          <h2 class="">Preparing future cadres of young people</h2>
+                          <p class="ml-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                          <button type="button" class="btn btn-default mx-auto get">Donate now</button>
+                      </div>
+                      <div class="col-sm-6 text-center">
+                          <img src="{% static './projects/images/cadr.jpg'%}" class=" img-fluid " style=" height: 350px;" alt="...">
+                      </div>
+                  </div>
+
+                  </div>
+
+                       </div>
+
+
+                  <a class="carousel-control-prev " href="#myCarousel" role="button"  data-slide="prev">
+                      <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+
+                      <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                      <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+
+                      <span class="sr-only ">Next</span>
+                  </a>
+              </div>
+          </div><!-- col-sm-12 -->
+      </div>
+      </div>
+</section><!--/slider-->
+
+<section id="categories mt-4 mb-5 pb-5">
+    <h1 class="text-center pt-5">show all Categories </h1>
+
+    <div class="container mb-5   ">
+     <div class="row">
+       <div class="owl-carousel owl-theme  ">
+        {% for category in categories %}
+        <div class="card card1 mr-2 " >
+          
+           <img src="{{category.get_image_url}}" class="w-100 h-75 "  alt="...">
+              <p class="card-title ">{{category.category_name}}</p>
+              <a href="{% url 'category_show' category.id%}" class="btn mb-2 ">
+                <i class="fa fa-eye"></i> show</a>
+  
+        </div>
+        {% endfor %}
+
+    </div><!-- owl-carsoule owl-theme -->
+
+
+    
+    
+        
+
+
+
+
+    </div><!-- row -->
+
+    </div><!-- container -->
+   </section>
+<div class="container">
+  <div class="row">
+   
+
+
+  </div><!-- row -->
+</div><!-- container -->
+
+
+
+
+
+
+
+
+<section id="projects mb-5 pb-5">
+    <h1 class="text-center">show all projects </h1>
+
+    <div class="container mb-5   ">
+     <div class="row">
+       <div class="owl-carousel owl-theme  ">
+    
+   
+    {% for project in projects %}
+  
+    <div class="card card3 " >
+        <img src="{{project.images_project.first.get_image_url}}" style="height:240px;" alt=""> 
+
+        
+          <h5 class="card-title">{{project.Title}}</h5>
+          <h5 class="card-title">created by:{{project.owner}}</h5>
+          <h5 class="card-title">created At:{{project.created_at}}</h5>
+          <!-- <p class="card-text">{{activity.Description}}</p> -->
+          <a href="{% url 'show_project' project.id%}" class="btn ">
+           <i class="fa fa-eye"></i> show</a>
+          <!-- <a href="{% url 'edit_project' project.id%}" class="btn ">
+            <i class="fa fa-edit"></i> Edit</a>
+          <a href="{% url 'delete_project' project.id%}" class="btn ">
+            <i class="fa fa-trash-alt"></i> Delete</a> -->
+    </div>
+      {% endfor %}
+
+
+    </div><!-- owl-carsoule owl-theme -->
+
+
+</div><!-- row -->
+
+</div><!-- container -->
+</section>
+
+
+<section id="about_us" class="mt-5 pt-5">
+    <h1 class="text-center pb-4"> What Do You Want To Know About Us?</h1>
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{% static './projects/images/aboutus1.jpg'%}" class="w-100" alt="">
+
+            </div><!--col-md-6 1 -->
+
+
+            <div class="col-md-6">
+                <h3 class=" text-danger">social finance</h3>
+<p>The help Foundation seeks to achieve the implementation of a number of activities and programs to raise the efficiency of infrastructure projects and public services provided to citizens of the governorates, including:
+Implementation of hygiene programs, dealing with solid waste, beautifying squares and entrances to villages and cities, and improving the environment
+Extending electricity networks to disadvantaged and emerging areas and improving electricity services.
+Implementation of road paving projects to connect villages to each other and between cities within the governorate.
+Implementation of bridges and tunnels projects for cars and pedestrians.
+Implementation of firefighting, security and traffic projects, and provision of equipment and vehicles required for this program.
+Supporting the needs of local units.
+Completion of planned projects in poor villages.</p>
+
+
+            </div><!--col-md-6 2  -->
+
+        </div><!-- row -->
+
+    </div><!-- container -->
+
+</section>
+
+
+
+<section id="projects mb-5 pb-5">
+    <h1 class="text-center">show all featured Projects </h1>
+
+    <div class="container mb-5   ">
+     <div class="row">
+       <div class="owl-carousel owl-theme  ">
+    
+   
+    {% for feature in featured_projects %}
+  
+    <div class="card card3 " >
+        <img src="{{feature.images_project.first.get_image_url}}" style="height:240px;" alt=""> 
+
+        
+          <h5 class="card-title">{{feature.Title}}</h5>
+          <h5 class="card-title">created by:{{feature.owner}}</h5>
+          <h5 class="card-title">created At:{{feature.created_at}}</h5>
+          <a href="{% url 'show_project' feature.id%}" class="btn ">
+           <i class="fa fa-eye"></i> show</a>
+          
+    </div>
+      {% endfor %}
+
+
+    </div><!-- owl-carsoule owl-theme -->
+
+
+</div><!-- row -->
+
+</div><!-- container -->
+</section>
+
+<section class="mt-5 pt-5" style="background-color: rgb(235, 235, 195);">
+    <h1 class="text-center d-flex">heighest top 5 projects  ...</h1>
+    {% for b in p %}
+    <a href="{% url 'show_project' b.project %}"><h5>project {{b.project}} :</h5><h5> rates : {{b.rates}}</h5> </a>
+
+     
+    {% endfor %}
+
+   
+   
+  
+  
+  </section>
+
+
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+    
+    
+    
